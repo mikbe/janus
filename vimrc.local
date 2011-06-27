@@ -1,0 +1,71 @@
+" This file should be for stuff you change often and want to be able to reload
+
+" mapleader has to be set before it's used (no maps in vimrc!)
+let mapleader = ","
+
+" Useful status information at bottom of screen
+set statusline=[%n]\ %<%.99f\ %h%w%m%r%y\ %{exists('*CapsLockStatusline')?CapsLockStatusline():''}%=%-16(\ %l,%c-%v\ %)%P
+
+" Appearance
+color railscasts+
+
+" Shows a nice $ indicator at the end of the change block
+set cpoptions+=$
+
+" Fold on syntax (must have a syntax file or uses C)
+set foldmethod=syntax
+
+" Commands
+command! FR set filetype=ruby
+
+" Key maps
+
+" Makes editing vimrc.local easier
+map <Leader>v :e $MYVIMRC.local<Return>,,
+map <Leader>r :so $MYVIMRC.local<Return>
+map <Leader>ss :b#<Return>
+
+" Window navgation that won't kill your hand
+map <Leader>h <C-W>h
+map <Leader>l <C-W>l
+map <Leader>k <C-W>k
+map <Leader>j <C-W>j
+
+" Remap escape so you don't have to take your hand off the homekeys
+imap ;; <Esc>
+
+" Open Markdown files in the browser as HTML
+map <buffer> <Leader>p :Hammer<CR>
+
+" ZoomWin configuration
+map <Leader><Leader> :ZoomWin<CR>
+map <Leader>n :NERDTreeToggle<CR>
+
+" CTags
+map <Leader>rt :!ctags --extra=+f -R *<CR><CR>
+map <C-\> :tnext<CR>
+
+" Opens an edit command with the path of the currently edited file filled in
+" Normal mode: <Leader>e
+map <Leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
+
+" Opens a tab edit command with the path of the currently edited file filled in
+" Normal mode: <Leader>t
+map <Leader>te :tabe <C-R>=expand("%:p:h") . "/" <CR>
+
+" Inserts the path of the currently edited file into a command
+" Command mode: Ctrl+P
+cmap <C-P> <C-R>=expand("%:p:h") . "/" <CR>
+
+" Unimpaired configuration
+" Bubble single lines
+nmap <C-k> [e
+nmap <C-j> ]e
+nmap <C-Up> [e
+nmap <C-Down> ]e
+" Bubble multiple lines
+vmap <C-k> [egv
+vmap <C-j> ]egv
+vmap <C-Up> [egv
+vmap <C-Down> ]egv
+

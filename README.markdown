@@ -1,4 +1,4 @@
-# Janus: Carlhuda's vim Distribution
+# Mikbe's personallized version of => Janus: Carlhuda's vim Distribution
 
 This is a basic distribution of vim plugins and tools intended to be run
 on top of the latest MacVIM snapshot.

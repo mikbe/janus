@@ -155,7 +155,8 @@ vim_plugin_task "textile",          "git://github.com/timcharper/textile.vim.git
 vim_plugin_task "rails",            "git://github.com/tpope/vim-rails.git"
 vim_plugin_task "rspec",            "git://github.com/taq/vim-rspec.git"
 vim_plugin_task "zoomwin",          "git://github.com/vim-scripts/ZoomWin.git"
-vim_plugin_task "snipmate",         "git://github.com/msanders/snipmate.vim.git"
+# snipmate is no longer maintained and the replacement project tries to do too much
+vim_plugin_task "snipmate",         "git://github.com/mikbe/snipmate.vim.git"
 vim_plugin_task "markdown",         "git://github.com/tpope/vim-markdown.git"
 vim_plugin_task "align",            "git://github.com/tsaleh/vim-align.git"
 vim_plugin_task "unimpaired",       "git://github.com/tpope/vim-unimpaired.git"
@@ -167,7 +168,8 @@ vim_plugin_task "syntastic",        "git://github.com/scrooloose/syntastic.git"
 vim_plugin_task "puppet",           "git://github.com/ajf/puppet-vim.git"
 vim_plugin_task "scala",            "git://github.com/bdd/vim-scala.git"
 vim_plugin_task "gist-vim",         "git://github.com/mattn/gist-vim.git"
-
+vim_plugin_task "matchit",          "git://github.com/vim-scripts/matchit.zip.git"
+vim_plugin_task "delimitMate",      "git://github.com/Raimondi/delimitMate.git"
 vim_plugin_task "hammer",           "git://github.com/robgleeson/hammer.vim.git" do
   sh "gem install github-markup redcarpet"
 end

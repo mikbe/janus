@@ -1,12 +1,17 @@
+" This file should be for stuff you *DO NOT* change often and *WILL NOT* reload
+set nocompatible
+autocmd!
+
+" I don't know why this is off...
 filetype off
-call pathogen#runtime_append_all_bundles()
+
+" Pathogen need to be right up at the top
 call pathogen#runtime_append_all_bundles("janus_bundle")
 call pathogen#helptags()
 filetype plugin indent on
 
-
-set nocompatible
-
+" Don't warn if switching from an unsaved buffer (annoying!)
+set hidden
 set number
 set ruler
 syntax on
@@ -42,17 +47,9 @@ set noequalalways
 
 " NERDTree configuration
 let NERDTreeIgnore=['\.pyc$', '\.rbc$', '\~$']
-map <Leader>n :NERDTreeToggle<CR>
 
 " Command-T configuration
 let g:CommandTMaxHeight=20
-
-" ZoomWin configuration
-map <Leader><Leader> :ZoomWin<CR>
-
-" CTags
-map <Leader>rt :!ctags --extra=+f -R *<CR><CR>
-map <C-\> :tnext<CR>
 
 " Remember last location in file
 if has("autocmd")
@@ -60,15 +57,14 @@ if has("autocmd")
     \| exe "normal g'\"" | endif
 endif
 
-function s:setupWrapping()
+function! s:setupWrapping()
   set wrap
   set wrapmargin=2
   set textwidth=72
 endfunction
 
-function s:setupMarkup()
+function! s:setupMarkup()
   call s:setupWrapping()
-  map <buffer> <Leader>p :Hammer<CR>
 endfunction
 
 " make uses real tabs
@@ -93,26 +89,6 @@ set backspace=indent,eol,start
 
 " load the plugin and indent settings for the detected filetype
 filetype plugin indent on
-
-" Opens an edit command with the path of the currently edited file filled in
-" Normal mode: <Leader>e
-map <Leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
-
-" Opens a tab edit command with the path of the currently edited file filled in
-" Normal mode: <Leader>t
-map <Leader>te :tabe <C-R>=expand("%:p:h") . "/" <CR>
-
-" Inserts the path of the currently edited file into a command
-" Command mode: Ctrl+P
-cmap <C-P> <C-R>=expand("%:p:h") . "/" <CR>
-
-" Unimpaired configuration
-" Bubble single lines
-nmap <C-Up> [e
-nmap <C-Down> ]e
-" Bubble multiple lines
-vmap <C-Up> [egv
-vmap <C-Down> ]egv
 
 " Enable syntastic syntax checking
 let g:syntastic_enable_signs=1
@@ -149,8 +125,46 @@ runtime! macros/matchit.vim
 
 " Show (partial) command in the status line
 set showcmd
+let PechoLock = 0
+fu! Pecho(msg)
+  wh islocked("g:PechoLock")|sl|endw
+  lockv g:PechoLock|let s:hold_ut=&ut|let &ut=1
+  let s:Pecho=a:msg
+  aug Pecho
+    au CursorHold * ec s:Pecho
+          \|let &ut=s:hold_ut|unlo g:PechoLock
+          \|aug Pecho|exe 'au!'|aug END|aug! Pecho
+  aug END
+endf
 
-" Include user's local vim config
-if filereadable(expand("~/.vimrc.local"))
-  source ~/.vimrc.local
+" show (partial) command in the status line
+set showcmd
+
+" Automatically reload the vimrc.local file after it's saved
+if has("autocmd")
+  autocmd! BufWritePost .vimrc.local,vimrc.local call LoadLocal()
 endif
+
+" Allows the last thing echoed to be visible without annoying
+" "Press Enter to Continue" messages.
+let PechoLock = 0
+fu! Pecho(msg)
+  wh islocked("g:PechoLock")|sl|endw
+  lockv g:PechoLock|let s:hold_ut=&ut|let &ut=1
+  let s:Pecho=a:msg
+  aug Pecho
+    au CursorHold * ec s:Pecho
+          \|let &ut=s:hold_ut|unlo g:PechoLock
+          \|aug Pecho|exe 'au!'|aug END|aug! Pecho
+  aug END
+endf
+
+" Load the vimrc.local file if there is one
+function! LoadLocal()
+  if filereadable(expand("~/.vimrc.local"))
+    source $MYVIMRC.local
+    call Pecho("Reloaded")
+  endif
+endfunction
+call LoadLocal()
+
