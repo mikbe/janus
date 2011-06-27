@@ -107,9 +107,6 @@ let g:gist_open_browser_after_post = 1
 set modeline
 set modelines=10
 
-" Default color scheme
-color desert
-
 " Directories for swp files
 set backupdir=~/.vim/backup
 set directory=~/.vim/backup
@@ -148,7 +145,7 @@ endif
 " Allows the last thing echoed to be visible without annoying
 " "Press Enter to Continue" messages.
 let PechoLock = 0
-fu! Pecho(msg)
+fu! s:Pecho(msg)
   wh islocked("g:PechoLock")|sl|endw
   lockv g:PechoLock|let s:hold_ut=&ut|let &ut=1
   let s:Pecho=a:msg
@@ -163,7 +160,7 @@ endf
 function! LoadLocal()
   if filereadable(expand("~/.vimrc.local"))
     source $MYVIMRC.local
-    call Pecho("Reloaded")
+    call s:Pecho("Reloaded: " . strftime("%H:%M:%S"))
   endif
 endfunction
 call LoadLocal()
