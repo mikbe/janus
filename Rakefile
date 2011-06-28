@@ -168,7 +168,6 @@ vim_plugin_task "syntastic",        "git://github.com/scrooloose/syntastic.git"
 vim_plugin_task "puppet",           "git://github.com/ajf/puppet-vim.git"
 vim_plugin_task "scala",            "git://github.com/bdd/vim-scala.git"
 vim_plugin_task "gist-vim",         "git://github.com/mattn/gist-vim.git"
-vim_plugin_task "matchit",          "git://github.com/vim-scripts/matchit.zip.git"
 vim_plugin_task "delimitMate",      "git://github.com/Raimondi/delimitMate.git"
 vim_plugin_task "vim-ruby-runner",  "git://github.com/henrik/vim-ruby-runner.git"
 vim_plugin_task "hammer",           "git://github.com/robgleeson/hammer.vim.git" do
@@ -200,9 +199,10 @@ vim_plugin_task "janus_themes" do
       set fillchars=stlnc:\\<SP>
       hi  StatusLine guibg=#cccccc guifg=#000000
       hi  VertSplit  guibg=#dddddd
+      hi  RubyAccess guifg=#f8f800
     VIM
   end
-
+  public
   # custom version of jellybeans theme
   File.open(File.expand_path("../janus_bundle/janus_themes/colors/jellybeans+.vim", __FILE__), "w") do |file|
     file.puts <<-VIM.gsub(/^      /, "")
@@ -212,6 +212,7 @@ vim_plugin_task "janus_themes" do
       hi  VertSplit    guibg=#888888
       hi  StatusLine   guibg=#cccccc guifg=#000000
       hi  StatusLineNC guibg=#888888 guifg=#000000
+      hi  RubyAccess   guifg=#e8e800
     VIM
   end
 end
