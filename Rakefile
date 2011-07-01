@@ -170,9 +170,8 @@ vim_plugin_task "scala",            "git://github.com/bdd/vim-scala.git"
 vim_plugin_task "gist-vim",         "git://github.com/mattn/gist-vim.git"
 vim_plugin_task "delimitMate",      "git://github.com/Raimondi/delimitMate.git"
 vim_plugin_task "vim-ruby-runner",  "git://github.com/henrik/vim-ruby-runner.git"
-vim_plugin_task "hammer",           "git://github.com/robgleeson/hammer.vim.git" do
-  sh "gem install github-markup redcarpet"
-end
+vim_plugin_task "L9",               "git://github.com/vim-scripts/L9.git"
+vim_plugin_task "FuzzyFinder",      "git://github.com/vim-scripts/FuzzyFinder.git"
 
 vim_plugin_task "command_t",        "http://s3.wincent.com/command-t/releases/command-t-1.2.1.vba" do
   Dir.chdir "ruby/command-t" do

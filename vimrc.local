@@ -1,8 +1,5 @@
 " This file should be for stuff you change often and want to be able to reload
 
-" mapleader has to be set before it's used (no maps in vimrc!)
-let mapleader = ","
-
 " Useful status information at bottom of screen
 set statusline=[%n]\ %<%.99f\ %h%w%m%r%y\ %{exists('*CapsLockStatusline')?CapsLockStatusline():''}%=%-16(\ %l,%c-%v\ %)%P
 
@@ -24,6 +21,9 @@ command! FR set filetype=ruby
 
 " Key maps
 
+" mapleader has to be set before it's used (no maps in vimrc!)
+let mapleader = ","
+
 " Makes editing vimrc.local easier
 map <Leader>v :e $MYVIMRC.local<Return>,,
 map <Leader>r :so $MYVIMRC.local<Return>
@@ -35,11 +35,11 @@ map <Leader>l <C-W>l
 map <Leader>k <C-W>k
 map <Leader>j <C-W>j
 
+" Fix inconsistent behavior of $
+noremap $ g_
+
 " Remap escape so you don't have to take your hand off the homekeys
 imap ;; <Esc>
-
-" Open Markdown files in the browser as HTML
-map <buffer> <Leader>p :Hammer<CR>
 
 " ZoomWin configuration
 map <Leader><Leader> :ZoomWin<CR>
